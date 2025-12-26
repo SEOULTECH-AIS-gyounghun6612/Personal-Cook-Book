@@ -22,6 +22,7 @@ Docker 이미지 관리와 레지스트리 상호작용에 필요한 핵심 명�
 **설명**: Docker Hub 또는 사설 레지스트리에 인증. 업로드(`push`) 및 비공개 이미지 다운로드(`pull`) 전 필수 단계.
 
 **사용 예시**:
+
 ```bash
 # Docker Hub 로그인 (Username, Password 입력 필요)
 docker login
@@ -33,6 +34,7 @@ docker login my-registry.com
 ### 로그아웃 : `docker logout [SERVER]`
 
 **사용 예시**:
+
 ```bash
 docker logout
 ```
@@ -40,6 +42,7 @@ docker logout
 ## 2. 이미지 생성
 
 ### 이미지 빌드 : `docker build [OPTIONS] PATH`
+
 *상세 내용은 [02_dockerfile_for_image.md](./02_dockerfile_for_image.md) 참고.*
 
 ## 3. 이미지 관리 및 태그 수정
@@ -47,10 +50,12 @@ docker logout
 ### 목록 확인 : `docker images [OPTIONS]`
 
 **주요 옵션**:
+
 * `-a`: 중간 레이어 이미지 포함 전체 조회.
 * `-q`: 이미지 ID만 출력.
 
 **사용 예시**:
+
 ```bash
 # 로컬 이미지 목록 확인
 docker images
@@ -59,9 +64,11 @@ docker images
 ### 이미지 다운로드 : `docker pull [OPTIONS] NAME[:TAG]`
 
 **주요 옵션**:
+
 * `-a`: 저장소의 모든 태그 이미지 다운로드.
 
 **사용 예시**:
+
 ```bash
 # 최신 버전의 Ubuntu 이미지 다운로드
 docker pull ubuntu:latest
@@ -75,6 +82,7 @@ docker pull python:3.9-slim
 **설명**: 기존 이미지에 새로운 이름이나 태그(버전)를 부여. 레지스트리 업로드 전 필수 단계.
 
 **사용 예시**:
+
 ```bash
 # 'my-app' 이미지에 버전 태그 추가
 docker tag my-app:latest my-app:v1.0.0
@@ -86,6 +94,7 @@ docker tag my-app:latest username/my-app:latest
 ### 이미지 업로드 : `docker push [OPTIONS] NAME[:TAG]`
 
 **사용 예시**:
+
 ```bash
 # 원격 저장소(Docker Hub 등)로 이미지 전송
 docker push username/my-app:latest
@@ -96,6 +105,7 @@ docker push username/my-app:latest
 ### 상세 정보 확인 : `docker inspect IMAGE`
 
 **사용 예시**:
+
 ```bash
 # 이미지의 구성 정보(JSON 형식) 출력
 docker inspect ubuntu:latest
@@ -104,9 +114,11 @@ docker inspect ubuntu:latest
 ### 이미지 삭제 : `docker rmi [OPTIONS] IMAGE`
 
 **주요 옵션**:
+
 * `-f`: 컨테이너에서 사용 중이더라도 강제 삭제 (Force).
 
 **사용 예시**:
+
 ```bash
 # 특정 이미지 삭제
 docker rmi python:3.9-slim
