@@ -1,0 +1,4 @@
+[submodule "LATTE"]
+	path = LATTE
+	url = https://github.com/SEOULTECH-AIS/LaTeX_Assistant_Template_for_Thesis_Efficiency.git
+	branch = main
