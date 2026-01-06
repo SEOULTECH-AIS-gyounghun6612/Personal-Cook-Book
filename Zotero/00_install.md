@@ -16,15 +16,19 @@
 
 `계정 생성 주소`: [https://www.zotero.org/user/register](https://www.zotero.org/user/register)
 
+계정 생성 후 아래 가입 주소에서 연구실 그룹 신청
+
 `연구실 Zotero 그룹`: [https://www.zotero.org/groups/6196069/seoultech_ais](https://www.zotero.org/groups/6196069/seoultech_ais)
 
-계정 생성 후 아래의 주소에서 연구실 그룹 신청
+![그룹 가입 버튼 위치](./.source/about_group/join_02.png)
 
 `!!! 반드시 신청 후 그룹 관리자에게 가입 신청 여부를 알려줄 것!!!`
 
-![그룹 가입 버튼 위치](./.source/search_group/step_02.png)
+아래 그림과 같이 그룹이 출력되면 정상적으로 처리가 완료 된 것.
 
-## 2. 설치 과정 및 초기 작업
+![그룹 가입 완료시 그룹 화면](./.source/about_group/join_03.png)
+
+## 2. 설치
 
 `다운로드 경로`: [https://www.zotero.org/download/](https://www.zotero.org/download/)
 
@@ -36,20 +40,43 @@ Zotero는 데스크탑 앱과 브라우저 커넥터가 한 쌍으로 작동하�
 
 데스크탑 설치 프로그램 다운로드 후 기본 값으로 설치 진행.
 
-설치 종료후 실행 시 다음과 같은 화면이 출력 됨.
+설치 후 실행 시 다음과 같은 화면이 출력 됨.
 
-![Zotero 기본 화면](./.source/step_2.PNG)
-
-2가지 변경 사항이 필요.
-
-####
-
+![Zotero 기본 화면](./.source/desktop/main_page.png)
 
 ### 브라우저 커넥터
 
 브라우저 커넥터 설치 후 아래 그림과 같이 작업 도구 고정 필요.
 
 ![브라우저 작업 도구 고정](./.source/step_1.PNG)
+
+## 3.초기 작업
+
+### 데스크탑 앱 동기화 작업
+
+앱 화면 우측 상단에 있는 새로고침 아이콘 또는 설정의 동기화 [Sync] 탭
+
+`설정 탭 위치 : 편집 [Edit] -> 설정 [Setting]`
+
+해당 설정에서 생성한 아이디와 비밀번호 입력후 `동기화 설정` 클릭
+
+![동기화 설정 페이지](./.source/desktop/sync_before.png)
+
+아래 그림과 같이 그룹이 출력되면 정상적으로 처리가 완료 된 것.
+
+![동기화 설정 페이지](./.source/desktop/sync_after.png)
+
+### 데스크탑 앱 기본 설정
+
+2가지 변경 사항이 필요.
+
+설정 탭 위치 : 편집 [Edit] -> 설정 [Setting]
+
+1. 언어 설정 변경 일반[General] 항목
+
+
+
+
 
 ## 2. 핵심 기능
 
