@@ -14,8 +14,14 @@
 
 * 내용: Zotero의 핵심 개념인 '컬렉션(Collection)'과 '아이템(Item)'의 관계 설명. (폴더가 아닌 태그/참조 방식의 DB 구조).
 
-### 3. [실전 가이드: 관리 및 수집 (How to Use)](./02_how_to_use.md)
+### 3. 실전 가이드: 관리 및 수집 (How to Use)
 
 * 내용: 웹 커넥터를 이용한 원클릭 논문 수집, 드래그 앤 드롭을 통한 분류, 태그/노트 활용법.
 
-> Tip: 구조적 이해(02_collection_structure.md)는 건너뛰고 [설치](./01_install.md) 후 바로 [실전 가이드](./02_how_to_use.md)를 통해 사용법을 익혀도 무방합니다.
+  * [컬렉션 생성 및 관리](./03_how_to_use_collection.md)
+  
+  * [아이템 생성 및 관리](./04_how_to_use_item.md)
+  
+  * [확장 프로그램 사용](./00_intro.md)
+
+> Tip: 구조적 이해(02_collection_structure.md)는 건너뛰고 [설치](./01_install.md) 후 바로 실전 가이드를 통해 사용법을 익혀도 무방.
