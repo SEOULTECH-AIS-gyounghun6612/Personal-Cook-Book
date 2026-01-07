@@ -68,7 +68,7 @@ Zotero는 데스크탑 앱과 브라우저 커넥터가 한 쌍으로 작동하�
 
 ![동기화 설정 페이지](./.source/desktop/sync_after.png)
 
-### 3.2 [데스크탑 앱] 추천 설정 
+### 3.2 [데스크탑 앱] 추천 설정
 
 ![동기화 설정 페이지](./.source/desktop/recommand_setting.png)
 

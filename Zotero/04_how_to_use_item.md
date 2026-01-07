@@ -8,7 +8,7 @@
 
 ### 1.1 웹 커넥터 (Web Connector)
 
-![웹 커넥터 사용 예시](./.source/function/add_from_web.png)
+![웹 커넥터 사용 예시](./.source/function/items/add_from_web.png)
 
 * 브라우저 확장을 통한 원클릭 수집 (가장 강력함).
 
@@ -17,26 +17,36 @@
     1. 논문/자료 페이지 접속 (Google Scholar, arXiv 등).
     2. 주소창 옆 Zotero 아이콘 클릭.  
       -> 변환이 될 수 있는 데이터를 자동으로 감지, 아이콘이 자동으로 변환
-      ![아이콘 변화 예시](./.source/function/icon_change.png)
+      ![아이콘 변화 예시](./.source/function/items/icon_change.png)
 
 ### 1.2 식별자 추가 (ISBN/DOI)
 
 * 마술봉 아이콘: 상단 도구 모음 위치.
 * 기능: ISBN, DOI, PMID 입력 시 메타데이터 자동 완성.
-* 장점: 수기 입력 대비 오타 없음, 가장 정확함.
+* 장점: 수기 입력 대비 오타 없음 -> 비교적 정확함.
 
 ## 2. 아이템 관리 (분류 및 정리)
 
-참조(Reference) 기반의 유연한 분류 시스템.
+참조(Reference) 기반의 유연한 분류 시스템. -> 자세한 개념은 [해당 문서](./02_collection_structure.md) 참고
 
 * 분류 (할당):
+
   * 아이템을 원하는 컬렉션으로 드래그 앤 드롭.
-  * 원리: 복사가 아닌 참조 추가. (하나의 논문이 여러 컬렉션에 존재).
+
+  * 원리: 복사가 아닌 `참조 추가`. (하나의 논문이 여러 컬렉션에 존재).
 
 * 제거 (Remove):
-  * `Delete` 키: 해당 컬렉션에서만 제외 (라이브러리 원본 유지).
-  * 완전 삭제는 '내 라이브러리' 또는 우클릭 메뉴 활용.
+
+  ![아이템 삭제](./.source/function/items/del_items.png)
+
+  * Remove Item from ... : 해당 컬렉션에서만 제외. (= 아이템 객체 정보는 유지)
+  
+  * Move item to Trash: 해당 아이템의 완전한 삭제.
+
+  * `Delete` 키: 해당 컬렉션에서만 제외 (= Remove Item from ...).
+
+  * 가장 상단에 위치한 My Library에서 제거시 완전히 삭제.
 
 * 부가 정보 관리:
-  * 태그: 하단 태그 탭 활용, 색상 지정(1~9번 단축키) 가능.
+
   * 노트: 아이템 하위 노트 생성, 인용문 및 요약 정리.

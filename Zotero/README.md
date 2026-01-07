@@ -22,6 +22,6 @@
   
   * [아이템 생성 및 관리](./04_how_to_use_item.md)
   
-  * [확장 프로그램 사용](./00_intro.md)
+  * [논문 참고 문헌을 위한 bib 파일 생성](./05_how_to_make_bib.md)
 
 > Tip: 구조적 이해(02_collection_structure.md)는 건너뛰고 [설치](./01_install.md) 후 바로 실전 가이드를 통해 사용법을 익혀도 무방.

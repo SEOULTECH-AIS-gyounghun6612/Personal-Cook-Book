@@ -7,7 +7,7 @@
 * 폴더 트리 구조와 유사, 유연한 생성 및 계층화 지원.
 
 * 생성:  
-  ![컬렉션 추가 버튼 위치](./.source/function/add_new_collection.png)
+  ![컬렉션 추가 버튼 위치](./.source/function/collection/add_new_collection.png)
 
   * `새 컬렉션` 아이콘 클릭 또는 라이브러리 우클릭.
 
@@ -37,7 +37,7 @@
 
 * 삭제 옵션:
 
-  * 각각의 아이템은 컬렉션에 종속된 구조가 아님. -> 자세한 내용은 [해당 문서](./02_collection_structure.md) 참고
+  * 각각의 아이템은 컬렉션에 종속된 구조가 아님. -> 자세한 개념은 [해당 문서](./02_collection_structure.md) 참고
   
   * `컬렉션 삭제 [Delete Collection]`: 분류 폴더만 삭제 (내용물 보존).
 
@@ -57,7 +57,7 @@ Zotero가 자동으로 제공하거나 특수한 목적을 가진 관리 항목.
 
 * 파일 추가: 드래그 앤 드롭으로 추가 시, 아래와 같은 경고 메시지 출력 (공개 여부 확인).
 
-![내 출판물 경고](./.source/function/my_publication_warring.png)
+![내 출판물 경고](./.source/function/collection/my_publication_warring.png)
 
 ### 2.2 중복된 항목 (Duplicate Items)
 
@@ -69,7 +69,7 @@ DB 내에서 서지 정보(제목, 저자 등)가 유사한 항목을 자동 검
 
   * 상이한 정보가 있을 경우 대표 정보를 선택하여 하나의 완벽한 아이템으로 병합 가능.
 
-![중복 항목 병합 과정](./.source/function/duplication_mearge_process.png)
+![중복 항목 병합 과정](./.source/function/collection/duplication_mearge_process.png)
 
 ### 2.3 분류되지 않은 항목 (Unfiled Items)
 
@@ -81,4 +81,3 @@ DB 내에서 서지 정보(제목, 저자 등)가 유사한 항목을 자동 검
 
   * 웹에서 급하게 수집하여 '내 라이브러리'에만 쌓인 자료 확인 용도.
   * 주기적으로 확인하여 적절한 컬렉션으로 분류(드래그) 후, 목록이 비어있는지 확인하는 습관 권장.
-
