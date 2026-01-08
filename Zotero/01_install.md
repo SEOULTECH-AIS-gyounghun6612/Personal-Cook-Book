@@ -16,13 +16,13 @@
 
 `계정 생성 주소`: [https://www.zotero.org/user/register](https://www.zotero.org/user/register)
 
-계정 생성 후 아래 가입 주소에서 연구실 그룹 신청
+계정 생성 후 아래 주소에서 그룹을 검색하여 참가 신청 가능.
 
-`연구실 Zotero 그룹`: [https://www.zotero.org/groups/6196069/seoultech_ais](https://www.zotero.org/groups/6196069/seoultech_ais)
+`Zotero 그룹 검색 창`: [https://www.zotero.org/search/?q=](https://www.zotero.org/search/?q=)
+
+검색 후 해당 그룹을 클릭시 다음과 같은 페이지를 볼 수 있음.
 
 ![그룹 가입 버튼 위치](./.source/about_group/join_02.png)
-
-`!!! 반드시 신청 후 그룹 관리자에게 가입 신청 여부를 알려줄 것!!!`
 
 아래 그림과 같이 그룹이 출력되면 정상적으로 처리가 완료 된 것.
 
