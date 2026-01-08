@@ -35,9 +35,7 @@ GitHub는 Git 저장소를 클라우드에 호스팅하여 협업을 돕는 웹 
 
 * [사전 준비 (Token & Config)](./github/00_preparation.md): GitHub 액세스 토큰(PAT) 발급 및 Git 사용자 정보 설정.
 
-* [원격 저장소 연결](./github/01_remote_connection.md): `remote add` 등을 통한 로컬-원격 저장소 연결 관리.
-
-* [Push & Pull 명령어](./github/02_push_and_pull.md): 코드 업로드 및 동기화 방법 상세.
+* [원격 저장소 관리](./github/01_remote.md): 저장소 연결(`remote`), 업로드(`push`), 내려받기(`pull`) 및 정리(`fetch`/`prune`) 방법.
 
 ---
 
