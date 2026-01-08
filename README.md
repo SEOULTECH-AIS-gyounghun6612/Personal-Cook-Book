@@ -23,17 +23,7 @@ Git은 파일의 변경 이력을 '스냅샷' 형태로 저장하여 추적하�
 
 ---
 
-## 2. Git Submodule (Advanced)
-
-하나의 Git 프로젝트 하위에 또 다른 Git 프로젝트를 디렉터리 형태로 포함시켜 관리하는 기능입니다. 라이브러리나 공통 모듈 관리에 유용합니다.
-
-* [Git Submodule 등록 및 갱신](./submodule/00_add_and_update.md): 서브모듈 추가(`submodule add`) 및 최신 상태 업데이트(`update`).
-
-* [Git Submodule 제거](./submodule/01_remove.md): 프로젝트에서 서브모듈을 깔끔하게 제거하는 절차.
-
----
-
-## 3. GitHub 연동 (Remote)
+## 2. GitHub 연동 (Remote)
 
 GitHub는 Git 저장소를 클라우드에 호스팅하여 협업을 돕는 웹 플랫폼입니다.
 
@@ -48,3 +38,11 @@ GitHub는 Git 저장소를 클라우드에 호스팅하여 협업을 돕는 웹 
 * [원격 저장소 연결](./github/01_remote_connection.md): `remote add` 등을 통한 로컬-원격 저장소 연결 관리.
 
 * [Push & Pull 명령어](./github/02_push_and_pull.md): 코드 업로드 및 동기화 방법 상세.
+
+---
+
+## 3. Git Submodule (Advanced)
+
+하나의 Git 프로젝트 하위에 또 다른 Git 프로젝트를 디렉터리 형태로 포함시켜 관리하는 기능입니다. 라이브러리나 공통 모듈 관리에 유용합니다.
+
+* [Git Submodule 관리](./advanced/00_submodule.md): 서브모듈 추가, 갱신 및 제거.
