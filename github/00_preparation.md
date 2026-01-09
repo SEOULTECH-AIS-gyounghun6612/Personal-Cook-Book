@@ -27,7 +27,8 @@ GitHub 보안 정책에 따라 비밀번호 대신 개인용 액세스 토큰(PA
 Git 명령어(`push`, `pull` 등) 실행 시 비밀번호 입력창에 저장해둔 **토큰 값**을 입력
 
 > `VS Code 기반 개발 환경 사용자라면?`  
-> 에디터 자체 GitHub 인증 기능을 활용하면 토큰 관리 없이 간편하게 작업 가능함 상세 방법은 [VS Code 설정 가이드](./) 참고
+> 에디터 자체 GitHub 인증 기능을 활용하면 토큰 관리 없이 간편하게 작업 가능함 상세 방법은
+[VS Code 설정 가이드](https://github.com/SEOULTECH-AIS-gyounghun6612/Personal-CookBook/blob/VS_code/basic/github_integration.md) 참고
 
 ## 2. 사용자 설정 (Config)
 
