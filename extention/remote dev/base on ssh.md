@@ -8,16 +8,18 @@ Visaul Studio Code에서 MS에서 공식으로 제공하는 확장툴을 이용�
 
 ### 1. 원격 연결을 위하여 Visaul Studio Code 확장 프로그램을 설치
 
-- MS에서 공식적으로 제공하는 `Remote Devleopment`를 설치하는 경우 개발 환경 원격 연결을 위한 대부분의 기능 설치 가능
-   ![설치 대상 이미지](./_img_source/use_extention_remote_ssh_000.png)
+- `Remote Devleopment`(MS 제공) 설치 ([설치 방법 가이드](../../basic/extension_install.md) 문서 참고)
+
+- 대부분의 원격 연결을 지원하는 다목적 확장 프로그램.
 
 ### 2. ssh config 파일 작성
 
 - 연결할 때마다 서버 주소와 계정을 입력하는 것도 가능하나, ssh 연결 정보를 적은 별도의 파일(ssh config)을 통해 보다 편하게 연결 가능
+
 - 기본적으로 설정된 경로의 경우 ssh config를 사용하는 대상 범위(전체, 해당 유저)를 제외한 나머지에서 차이는 없음.
-   ![SSH config 파일 열기](./_img_source/use_extention_remote_ssh_001.png)
 
 - ssh config의 구성은 아래 내용과 같음 (`${변수명}`로 표시된 부분은 본인 설정에 맞는 적절한 값으로 수정)
+   ![SSH config 파일 열기](../../.source/extention/remote_ssh/ssh_config_open_button.png)
 
    ``` yaml
    Host ${서버_구분_이름}
@@ -27,14 +29,14 @@ Visaul Studio Code에서 MS에서 공식으로 제공하는 확장툴을 이용�
       IdentityFile ${SSH_PUB_KEY_경로} # 선택
    ```
 
-- 원격 연결 관리 탭에서는 ssh config 파일에 작성한 `${서버_구분_이름}`으로 출력됨
+- 원격 연결 관리 탭에서는 ssh config 파일에 작성한 Host 값으로 설정된  `${서버_구분_이름}`으로 출력
 
-   ![SSH config 설정에 따른 관리 탭 표시](./_img_source/use_extention_remote_ssh_002.png)
+   ![SSH config 설정에 따른 관리 탭 표시](../../.source/extention/remote_ssh/ssh_profile_view.png)
 
 ### 3. ssh 연결
 
 - 명령창에 `>Remote-SSH: Connect to Host` 또는 `>Remote-SSH: Connect Current Window to Host`을 통해 서버와 연결 시도
 - SSH 원격 연결할 서버의 정보(계정@서버주소:port 번호)를 입력하거나, SSH config에 등록된 설정을 선택
-   ![명령어를 통한 SSH 연결](./_img_source/use_extention_remote_ssh_003.png)
+   ![명령어를 통한 SSH 연결](../../.source/extention/remote_ssh/connect_from_command.png)
 - 또는 원격 연결 관리 탭에서 연결하고자 하는 SSH config에 등록된 설정 이름 옆에 연결 버튼을 클릭
-   ![GUI 방식을 통한 SSH 연결](./_img_source/use_extention_remote_ssh_004.png)
+   ![GUI 방식을 통한 SSH 연결](../../.source/extention/remote_ssh/connect_from_ui.png)
