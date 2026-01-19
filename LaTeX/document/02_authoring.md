@@ -18,7 +18,18 @@ LaTeX는 위지윅(WYSIWYG) 방식이 아닌 논리적 구조 기반 작성을 �
 
 ### 상호 참조 (Cross-referencing)
 
-"그림 1을 참조하시오"와 같이 특정 요소를 가리킬 때, 하드코딩하지 않고 `label`과 `ref`를 사용함. 번호가 바뀌어도 자동 갱신됨.
+"그림 1을 참조하시오"와 같이 특정 요소를 가리킬 때, 하드코딩하지 않고 `\label`과 `\ref`를 사용함. 번호가 바뀌어도 자동 갱신됨.
+
+* `\label{key}`: 섹션, 그림, 수식 등에 고유한 식별자(꼬리표)를 붙임.
+* `\ref{key}`: 붙여둔 식별자를 불러와 해당 번호를 출력함.
+
+`팁: 라벨 작명 규칙 (Naming Convention)`
+라벨이 무엇을 가리키는지 소스 코드 상에서 쉽게 구분하기 위해 접두어(prefix)를 사용하는 것을 권장함.
+
+* `sec:` : 섹션 (예: `sec:intro`)
+* `fig:` : 그림 (예: `fig:architecture`)
+* `tab:` : 표 (예: `tab:result`)
+* `eq:`  : 수식 (예: `eq:loss_function`)
 
 ```latex
 \section{실험 결과} \label{sec:result}
@@ -28,32 +39,38 @@ LaTeX는 위지윅(WYSIWYG) 방식이 아닌 논리적 구조 기반 작성을 �
 
 ## 2. 주요 요소 작성 (Elements)
 
-### 수식 (Mathematics)
+논문의 핵심 구성 요소인 수식, 그림, 표를 작성하는 방법임. 상세한 코드는 아래 별도 문서를 참고.
 
-* `인라인 수식`: 문장 중간에 삽입 (`$ ... $`).
-* `독립 수식`: 별도 줄에 작성 및 번호 매기기 (`equation` 환경).
+### 상세 가이드
 
-```latex
-피타고라스 정리는 $a^2 + b^2 = c^2$이다.
+* [수식 작성 가이드](02_01_math.md): 인라인/독립 수식, 다중 수식 정렬 등.
+* [그림 작성 가이드](02_02_figure.md): 단일 그림, 다중 그림 배열(Minipage) 등.
+* [표 작성 가이드](02_03_table.md): 기본 표, 복잡한 표 생성 팁.
+* [알고리즘 가이드](02_04_algorithm.md): 의사코드(Pseudocode) 작성 및 환경 설정.
 
-\begin{equation}
-    E = mc^2 \label{eq:energy}
-\end{equation}
-```
+### 요소별 팁 (Tips)
 
-### 그림 (Figures)
+#### 1) 별표(`*`)가 붙은 환경의 차이
 
-`figure` 환경은 페이지 내에서 위치가 유동적인 '부동 개체(Float)'임. `[ht]` 옵션 등으로 위치 힌트를 줌.
+환경 이름 뒤에 `*`를 붙일 때의 동작이 요소마다 다름.
 
-```latex
-\begin{figure}[ht] % h: here, t: top
-    \centering
-    \includegraphics[width=0.8\linewidth]{fig/graph.png}
-    \caption{제안하는 알고리즘 성능 비교}
-    \label{fig:performance}
-\end{figure}
-```
+| 구분               | 환경 예시                      | `*`가 없을 때             | `*`가 있을 때 (Star Variant) |
+| :----------------: | :----------------------------: | :-----------------------: | :--------------------------: |
+| `수식`             | `equation`, `align`            | 번호가 `생성됨` (예: (1)) | 번호가 `생성되지 않음`       |
+| `그림/표/알고리즘` | `figure`, `table`, `algorithm` | `1단(Column)` 너비로 배치 | `2단(Page)` 전체 너비로 배치 |
 
-### 표 (Tables)
+> 주의: 그림/표/알고리즘의 `*`는 번호 유무와 무관하며, 오직 레이아웃(너비)에만 영향을 줌.
 
-기본적인 표 작성은 복잡하므로, [Table Generator](https://www.tablesgenerator.com/) 같은 도구를 활용하여 코드를 생성한 후 붙여넣는 것을 권장함.
+#### 2) 부동 객체(Float) 배치 옵션
+
+그림(`figure`), 표(`table`), 알고리즘(`algorithm`)은 본문 흐름과 독립적으로 배치되므로, 위치 힌트(`[...]`)를 제공해야 함.
+
+| 옵션 | 의미 | 설명 |
+| :--- | :--- | :--- |
+| `h` | `h`ere | 코드가 작성된 그 위치 근처 |
+| `t` | `t`op | 페이지 상단 |
+| `b` | `b`ottom | 페이지 하단 |
+| `p` | `p`age | 별도 페이지 |
+| `!` | override | 강제 배치 시도 |
+
+> 예: `\begin{algorithm}[htbp]`
