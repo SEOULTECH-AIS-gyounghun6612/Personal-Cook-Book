@@ -4,17 +4,16 @@
 
 ## 목차
 
-1. [연결 (Connect)](#1-연결-connect)
-2. [업로드 (Push)](#2-업로드-push)
-3. [가져오기 및 정리 (Fetch & Prune)](#3-가져오기-및-정리-fetch--prune)
-4. [내려받기 (Pull)](#4-내려받기-pull)
-5. [관리 (Manage)](#5-관리-manage)
+1. [원격 관리 : git remote](#1-원격-관리--git-remote)
+2. [업로드 : git push](#2-업로드--git-push)
+3. [가져오기 : git fetch](#3-가져오기--git-fetch)
+4. [내려받기 : git pull](#4-내려받기--git-pull)
 
-## 1. 연결 (Connect)
+## 1. 원격 관리 : `git remote`
 
-로컬 저장소에 GitHub 원격 저장소 주소를 등록하여 두 저장소를 연결
+로컬 저장소와 원격 저장소 간의 연결을 설정, 확인 및 관리
 
-### 주소 등록 : `git remote add [NAME] [URL]`
+### 1) 주소 등록 (Add)
 
 원격 저장소 주소를 특정 이름(별명)으로 등록 -> 관례적으로 기본 이름은 `origin`을 사용
 
@@ -23,7 +22,7 @@
 git remote add origin https://github.com/user/my-project.git
 ```
 
-### 연결 확인 : `git remote -v`
+### 2) 연결 확인 (List)
 
 등록된 원격 저장소 목록과 주소를 확인
 
@@ -33,11 +32,31 @@ git remote -v
 # 출력 예시: origin  https://github.com/... (fetch/push)
 ```
 
-## 2. 업로드 (Push)
+### 3) 주소 변경 (Set-URL)
 
-로컬의 커밋 내역을 원격 저장소로 전송하여 공유
+저장소 이름 변경 등으로 URL이 바뀌었을 때 정보를 갱신
 
-### 원격 업로드 : `git push [REMOTE] [BRANCH]`
+```bash
+# origin 저장소의 주소 변경
+git remote set-url origin https://github.com/new-user/new-project.git
+```
+
+### 4) 연결 삭제 (Remove)
+
+로컬과 원격 사이의 연결 정보를 삭제 (원격 저장소 파일은 유지됨)
+
+```bash
+# origin 연결 정보 삭제
+git remote remove origin
+```
+
+---
+
+## 2. 업로드 : `git push`
+
+로컬의 커밋 내역을 원격 저장소로 전송하여 공유하거나, 원격 브랜치를 관리
+
+### 1) 원격 업로드
 
 지정된 원격 저장소 브랜치로 로컬 변경 사항을 업로드
 
@@ -46,7 +65,7 @@ git remote -v
 git push origin master
 ```
 
-### 업스트림 설정 : `git push -u [REMOTE] [BRANCH]`
+### 2) 업스트림 설정 (Upstream)
 
 최초 1회 실행하여 로컬 브랜치와 원격 브랜치를 연결(Tracking) -> 이후에는 `git push`만 입력해도 자동 업로드됨.
 
@@ -58,11 +77,22 @@ git push -u origin master
 git push
 ```
 
-## 3. 가져오기 및 정리 (Fetch & Prune)
+### 3) 원격 브랜치 삭제 (Delete Remote Branch)
+
+더 이상 필요하지 않은 원격 저장소의 브랜치를 삭제 (로컬 브랜치는 삭제되지 않음)
+
+```bash
+# origin 저장소의 'feature/login' 브랜치 삭제
+git push origin --delete feature/login
+```
+
+---
+
+## 3. 가져오기 : `git fetch`
 
 원격 저장소의 변경 내역을 확인하거나 삭제된 브랜치 정보를 정리
 
-### 상태 확인 : `git fetch [REMOTE]`
+### 1) 상태 확인
 
 원격 저장소의 최신 데이터(커밋, 브랜치 등)를 가져오지만 로컬 브랜치와 병합하지는 않음 -> 원격의 최신 상태를 확인할 때 사용
 
@@ -71,7 +101,7 @@ git push
 git fetch origin
 ```
 
-### 업데이트 및 정리 : `git fetch --prune [REMOTE]`
+### 2) 업데이트 및 정리 (Prune)
 
 원격의 최신 데이터를 가져오면서, 원격 저장소에서 삭제된 브랜치에 대한 로컬 추적 정보를 자동으로 제거
 
@@ -85,11 +115,13 @@ git fetch --prune origin
 git fetch -p origin
 ```
 
-## 4. 내려받기 (Pull)
+---
+
+## 4. 내려받기 : `git pull`
 
 원격 저장소의 최신 변경 사항을 가져와 로컬 작업에 병합
 
-### 원격 동기화 : `git pull [REMOTE] [BRANCH]`
+### 1) 원격 동기화
 
 원격 저장소 내용을 가져와(`fetch`) 현재 브랜치에 즉시 병합(`merge`)
 
@@ -100,25 +132,3 @@ git pull origin master
 
 * 동작 원리: `git fetch` (데이터 다운로드) + `git merge` (코드 합치기)
 * 충돌(Conflict): 동일 파일 수정 시 자동 병합이 실패하며 사용자가 직접 해결 필요
-
-## 5. 관리 (Manage)
-
-등록된 원격 저장소 주소를 변경하거나 연결을 해제
-
-### 주소 변경 : `git remote set-url [NAME] [NEW_URL]`
-
-저장소 이름 변경 등으로 URL이 바뀌었을 때 정보를 갱신
-
-```bash
-# origin 저장소의 주소 변경
-git remote set-url origin https://github.com/new-user/new-project.git
-```
-
-### 연결 삭제 : `git remote remove [NAME]`
-
-로컬과 원격 사이의 연결 정보를 삭제 (원격 저장소 파일은 유지됨)
-
-```bash
-# origin 연결 정보 삭제
-git remote remove origin
-```
