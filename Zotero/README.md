@@ -10,7 +10,7 @@
 
 * 내용: 계정 생성, 데스크탑 앱 및 웹 커넥터 설치, 연구실 그룹 가입, 초기 필수 설정(동기화, 파일 관리).
 
-### 2. [구조적 특징 이해 (Structure)](./01_collection_structure.md)
+### 2. [구조적 특징 이해 (Structure)](./02_collection_structure.md)
 
 * 내용: Zotero의 핵심 개념인 '컬렉션(Collection)'과 '아이템(Item)'의 관계 설명. (폴더가 아닌 태그/참조 방식의 DB 구조).
 
