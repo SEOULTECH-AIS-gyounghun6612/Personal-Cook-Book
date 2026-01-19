@@ -49,6 +49,6 @@ LaTeX는 설정부터 출력까지 명확하게 구분된 단계별 처리를 �
 
 - 즉시 작성: 미리 정의된 스타일(`thesis`, `neurips`)과 매크로를 활용하여 설정 시간 단축.
 - Git 기반 관리:
-    - 통합 관리: 메인 리포지토리(`paper_bag`)에서 모든 논문을 서브모듈로 관리.
-    - 독립 격리: 각 논문은 `orphan branch`로 생성하여 이력 섞임 방지.
-- 상세 가이드: [LATTE 템플릿](./LATTE/README.md)
+  - 통합 관리: 메인 리포지토리(`paper_bag`)에서 모든 논문을 서브모듈로 관리.
+  - 독립 격리: 각 논문은 `orphan branch`로 생성하여 이력 섞임 방지.
+- 상세 가이드: [LATTE 템플릿](https://github.com/SEOULTECH-AIS/LaTeX_Assistant_Template_for_Thesis_Efficiency)

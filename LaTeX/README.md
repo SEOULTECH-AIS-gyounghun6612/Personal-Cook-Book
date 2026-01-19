@@ -34,4 +34,4 @@ LaTeX 작업을 시작하기 위해 로컬 컴퓨터에 필요한 도구를 설�
 
 기초 과정을 바탕으로 연구실 표준 템플릿을 활용하여 실전 논문을 작성함.
 
-- [LATTE 템플릿 가이드](./LATTE/README.md)
+- [LATTE 템플릿 가이드](https://github.com/SEOULTECH-AIS/LaTeX_Assistant_Template_for_Thesis_Efficiency)
