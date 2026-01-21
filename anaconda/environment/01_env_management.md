@@ -1,34 +1,72 @@
-# Conda를 이용한 가상환경 생성과 관리
+# Conda 가상환경 생성과 관리
 
-해당 페이지에서는 Conda 명령어를 통해 다양한 가상환경을 실제로 구성하고, 이를 관리하는 기본적인 방법을 정리하고 있음.
+프로젝트별 독립된 실행 환경을 생성하고 제어하는 핵심 명령어
 
-## 가상환경 생성
+## 목차
 
-``` bash
-conda create [-n {env_name}] []
-```
+1. [가상환경 생성 (Create)](#1-가상환경-생성-create)
+2. [기본 관리 (Manage)](#2-기본-관리-manage)
+3. [환경 복제 및 추출 (Export)](#3-환경-복제-및-추출-export)
 
-| 구분자 | 기능 |
-| :---: | :---: |
-| -n | 가상환경 이름|
-| -p | 지정한 경로로 가상환경이 위치함<br> (가상환경 기본 경로 ```$codna_path/env/$env_name```)|
-| -c | 채널 지정 |
-| --file | |
-| --clone | |
+## 1. 가상환경 생성 (Create)
 
-### 예시
+새로운 독립 공간 생성
 
-#### 단순 환경 생성
+### 기본 생성 명령어
 
 ```bash
-conda create -n ${env_name} 
+conda create -n {env_name} python={version} [packages]
 ```
 
-### 별도의 참조를 사용한 환경 생성
+* `-n {name}`: 가상환경 이름 지정
+* `python={version}`: 특정 Python 버전 지정 (권장)
+* `[packages]`: 생성 시 함께 설치할 패키지 목록
+
+### 활용 예시
 
 ```bash
-conda create
+# 'my_project'라는 이름으로 python 3.9 환경 생성
+conda create -n my_project python=3.9
+
+# 생성 시 numpy, pandas 함께 설치
+conda create -n data_analysis python=3.8 numpy pandas
 ```
 
-------------------------------------------------------------------------------------------------------------
-첫 페이지 / [목차](./../../README.md) / [다음 페이지](./03.package_management.md)
+## 2. 기본 관리 (Manage)
+
+생성된 환경의 상태 확인 및 진입/이탈
+
+### 주요 명령어
+
+| 동작 | 명령어 | 설명 |
+| :--- | :--- | :--- |
+| 조회 | `conda env list` | 생성된 모든 가상환경 목록 및 경로 확인 |
+| 활성화 | `conda activate {env_name}` | 해당 가상환경으로 진입 |
+| 비활성화 | `conda deactivate` | 현재 가상환경에서 이탈 (Base로 복귀) |
+| 삭제 | `conda env remove -n {env_name}` | 해당 가상환경 및 내부 패키지 영구 삭제 |
+
+## 3. 환경 복제 및 추출 (Export)
+
+환경 구성을 파일로 저장하거나 복제하여 재현성 확보
+
+### 환경 내보내기 및 불러오기
+
+* 내보내기 (Export): 현재 환경 설정을 YAML 파일로 저장
+
+    ```bash
+    conda env export > environment.yaml
+    ```
+
+* 불러오기 (Import): YAML 파일을 기반으로 동일한 환경 생성
+
+    ```bash
+    conda env create -f environment.yaml
+    ```
+
+### 환경 복제 (Clone)
+
+기존 환경을 그대로 복사하여 새로운 이름의 환경 생성
+
+```bash
+conda create --name {new_env} --clone {old_env}
+```

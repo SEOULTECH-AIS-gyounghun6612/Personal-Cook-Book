@@ -1,42 +1,57 @@
-# Conda 자동화를 이용한 가상환경 변수 관리
+# Conda 자동화: 환경 변수 관리
 
-가상환경에서 사용하고자 하는 환경 변수를 미리 설정하여, conda 명령어에 동기화되어 자동으로 처리하는 기능을 제공함.  
+가상환경 활성화(`activate`) 및 비활성화(`deactivate`) 시점에 특정 스크립트를 자동으로 실행하여 환경 변수(PATH 등)를 동적으로 제어
 
-이때 명령어에 따라 실행되는 스크립트 파일 위치는 다음과 같음.  
+## 목차
 
-| 명령어               | 디렉토리                               |
-| -------------------- | -------------------------------------- |
-| `conda activate`     | `$CONDA_PREFIX`/etc/conda/activate.d   |
-| `conda deactivate`   | `$CONDA_PREFIX`/etc/conda/deactivate.d |
+1. [동작 원리 (Mechanism)](#1-동작-원리-mechanism)
+2. [설정 예시: CUDA 경로 자동화](#2-설정-예시-cuda-경로-자동화)
 
-## 예시 - CUDA 경로 설정 자동화
+## 1. 동작 원리 (Mechanism)
 
-Linux 시스템에 구성된 가상환경 `learning_base`에서 사용하려는 cuda의 경로를 환경변수 PATH에 추가하는 자동화 스크립트를 사용하는 상황.  
+Conda 환경 내부의 특정 디렉토리에 스크립트를 위치시키면 상태 변경 시 자동 실행됨
 
-그 결과 환경의 활성화 또는 비활성화 과정에서 자동으로 환경변수 PATH에 cuda 경로를 설정하게 됨.  
+### 스크립트 실행 경로
 
-각 명령어 마다 실행하고자 하는 스크립트 파일은 다음과 같음.  
+* 활성화 시: `$CONDA_PREFIX/etc/conda/activate.d/*.sh` 실행
+* 비활성화 시: `$CONDA_PREFIX/etc/conda/deactivate.d/*.sh` 실행
 
-| 명령어               | 스크립트 파일                                       |
-| -------------------- | --------------------------------------------------- |
-| `conda activate`     | [`set_cuda_path.sh`](./../script/set_cuda_path.sh)     |
-| `conda deactivate`   | [`unset_cuda_path.sh`](./../script/unset_cuda_path.sh) |
+## 2. 설정 예시: CUDA 경로 자동화
 
-### Bash script
+특정 환경(`learning_base`) 진입 시에만 시스템 CUDA 경로를 변경하고, 나올 때 복원하는 설정
+
+### 디렉토리 생성
 
 ```bash
 conda activate learning_base
-mkdir -p $CONDA_PREFIX/etc/conda/activate.d  # $CONDA_PREFIX = 가상환경 디렉토리
+mkdir -p $CONDA_PREFIX/etc/conda/activate.d
 mkdir -p $CONDA_PREFIX/etc/conda/deactivate.d
-
-cd ./script
-cp set_cuda_path.sh $CONDA_PREFIX/etc/conda/activate.d/set_cuda_path.sh
-cp unset_cuda_path.sh $CONDA_PREFIX/etc/conda/deactivate.d/unset_cuda_path.sh
 ```
 
-### 적용 결과
+### 스크립트 작성 및 배치
 
-![결과_이미지](./../../_img_source/saving_environment_variable_000.png)
+활성화 스크립트 (`set_cuda_path.sh`)와 비활성화 스크립트 (`unset_cuda_path.sh`)를 작성하여 각각의 디렉토리에 배치
 
-------------------------------------------------------------------------------------------------------------
-첫 페이지 / [목차](./../../README.md) / 마지막 페이지
+```bash
+# 스크립트 복사 예시
+cp ./script/set_cuda_path.sh $CONDA_PREFIX/etc/conda/activate.d/
+cp ./script/unset_cuda_path.sh $CONDA_PREFIX/etc/conda/deactivate.d/
+```
+
+### 스크립트 내용 (Reference)
+
+[set_cuda_path.sh](./../script/set_cuda_path.sh)
+
+```bash
+#!/bin/bash
+export OLD_PATH=$PATH
+export PATH="/usr/local/cuda-12.5/bin:$PATH"
+```
+
+[unset_cuda_path.sh](./../script/unset_cuda_path.sh)
+
+```bash
+#!/bin/bash
+export PATH=$OLD_PATH
+unset OLD_PATH
+```

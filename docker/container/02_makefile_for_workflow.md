@@ -1,67 +1,58 @@
-# Make를 이용한 Docker 워크플로우 자동화
+# Make를 이용한 워크플로우 자동화
 
-## `make`란?
+복잡하고 긴 Docker 명령어를 `make`를 이용해 짧은 단축키로 추상화하여 관리 효율성 증대
 
-*   **정의**: 파일 종속성 기반의 빌드 자동화 도구. (`Makefile`에 규칙 정의)
-*   **활용**: 복잡하고 긴 Docker 명령어를 짧은 단축키(Target)로 추상화.
+## 목차
 
-## Docker와 함께 사용하는 이유
+1. [Make 개요 (Overview)](#1-make-개요-overview)
+2. [워크플로우 구성 (Workflow)](#2-워크플로우-구성-workflow)
 
-1.  **자동화 (Automation)**: 빌드, 실행, 정리 등의 반복 작업을 단일 명령으로 처리.
-2.  **단순화 (Simplicity)**: 복잡한 옵션(`-p`, `-v`, `-e` 등)을 매번 입력할 필요 없음.
-3.  **일관성 (Consistency)**: 팀원 모두가 동일한 설정과 명령어로 컨테이너 실행.
-4.  **의존성 관리**: `run` 실행 전 `build` 강제 수행 등 작업 순서 제어.
+## 1. Make 개요 (Overview)
 
-## 워크플로우 예제
+파일 종속성 기반의 빌드 자동화 도구이나, Docker 명령어 단축기로 널리 활용됨
 
-### 1. `Makefile` 작성
+### 사용 이유
+
+1. 단순화: 복잡한 옵션(`-p`, `-v`, `--gpus`) 암기 불필요
+2. 일관성: 팀원 간 동일한 실행 커맨드 공유
+3. 의존성: `run` 실행 전 `build` 자동 수행 등 순서 제어
+
+## 2. 워크플로우 구성 (Workflow)
+
+프로젝트 루트에 `Makefile`을 생성하여 정의
+
+### Makefile 작성 예시
 
 ```makefile
 # 변수 정의
-IMAGE_NAME := my-app-image
-CONTAINER_NAME := my-app-container
-PORT := 8000
+IMAGE_NAME := my-app
+CONTAINER_NAME := my-container
 
-# .PHONY: 파일명과 타겟명 충돌 방지
-.PHONY: build run stop clean shell logs
+# 타겟 정의 (.PHONY는 파일명 충돌 방지)
+.PHONY: build run stop clean
 
-# 이미지 빌드
+# 1. 이미지 빌드
 build:
-	@echo "[INFO] Building image..."
-	docker build -t $(IMAGE_NAME) .
+    docker build -t $(IMAGE_NAME) .
 
-# 컨테이너 실행 (백그라운드)
-# 의존성: build 타겟 먼저 실행
+# 2. 컨테이너 실행 (빌드 후 실행)
 run: build
-	@echo "[INFO] Starting container..."
-	docker run -d --rm --name $(CONTAINER_NAME) -p $(PORT):$(PORT) $(IMAGE_NAME)
+    docker run -d --rm --name $(CONTAINER_NAME) -p 8000:8000 $(IMAGE_NAME)
 
-# 컨테이너 중지
+# 3. 컨테이너 중지
 stop:
-	@echo "[INFO] Stopping container..."
-	docker stop $(CONTAINER_NAME) || true
+    docker stop $(CONTAINER_NAME)
 
-# 리소스 정리 (중지 후 이미지 삭제)
+# 4. 리소스 정리 (이미지 포함)
 clean: stop
-	@echo "[INFO] Removing image..."
-	docker rmi $(IMAGE_NAME) || true
-
-# 셸 접속 (디버깅)
-shell:
-	docker exec -it $(CONTAINER_NAME) /bin/bash
-
-# 로그 확인
-logs:
-	docker logs -f $(CONTAINER_NAME)
+    docker rmi $(IMAGE_NAME)
 ```
 
-### 2. 사용법
+### 사용법
 
-터미널에서 `make <타겟>` 명령으로 실행.
+터미널에서 `make {타겟명}` 입력
 
 ```bash
-make run    # 이미지 빌드 + 컨테이너 백그라운드 실행
-make logs   # 실행 중인 컨테이너 로그 확인
-make shell  # 컨테이너 내부 접속
-make clean  # 컨테이너 중지 및 이미지 삭제
+make run    # 빌드 + 실행
+make clean  # 중지 + 삭제
 ```
