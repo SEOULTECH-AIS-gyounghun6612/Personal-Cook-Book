@@ -39,8 +39,10 @@ GitHub는 Git 저장소를 클라우드에 호스팅하여 협업을 돕는 웹 
 
 ---
 
-## 3. Git Submodule (Advanced)
+## 3. Git Advanced (Submodule & Worktree)
 
-하나의 Git 프로젝트 하위에 또 다른 Git 프로젝트를 디렉터리 형태로 포함시켜 관리하는 기능 -> 라이브러리나 공통 모듈 관리에 유용함
+심화 기능으로 프로젝트 구조를 유연하게 관리하고 작업 효율을 높이는 방법
 
 * [Git Submodule 관리](./advanced/00_submodule.md): 서브모듈 추가, 갱신 및 제거
+
+* [독립 작업 공간 (Worktree & Orphan)](./advanced/01_worktree.md): 물리적 작업 공간 분리(`worktree`) 및 이력 단절 브랜치(`orphan`) 활용

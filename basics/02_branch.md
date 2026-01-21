@@ -1,14 +1,15 @@
 # 브랜치(Branch) 관리
 
-브랜치 관리는 크게 '관리(생성/조회/삭제)'를 담당하는 `git branch`와 '이동(작업 전환)'을 담당하는 `git checkout` 두 가지 명령어로 진행
+브랜치 관리는 크게 '관리(생성/조회/삭제)'와 '이동(작업 전환)'으로 구성
+Git 2.23 버전부터는 기능이 혼재되어 있던 `checkout` 대신, 목적이 명확한 `switch`(이동)와 `restore`(복구) 사용을 권장
 
 ## 목차
 
 1. [관리 : git branch](#1-관리--git-branch)
-
-2. [변경 : Switch & Restore](#2-변경--switch--restore)
-
-3. [병합 : git merge](#3-병합--git-merge)
+2. [이동 : git switch](#2-이동--git-switch)
+3. [복구 : git restore](#3-복구--git-restore)
+4. [구버전 명령어 : git checkout](#4-구버전-명령어--git-checkout)
+5. [병합 : git merge](#5-병합--git-merge)
 
 ## 1. 관리 : `git branch`
 
@@ -49,82 +50,80 @@ git branch -D feature/login
 
 ---
 
-## 2. 변경 : Switch & Restore
+## 2. 이동 : `git switch`
 
-작업 공간(브랜치)을 변경하거나 파일 상태를 변경(복구)하는 명령어.
-과거에는 `git checkout` 하나로 수행했으나, Git 2.23부터는 목적에 맞는 전용 명령어 사용을 권장.
+브랜치(작업 공간)를 실제로 변경하는 전용 명령어 (Git 2.23+)
 
 ### 1) 기존 방식 : `git checkout`
 
 브랜치 이동과 파일 복구 기능을 모두 수행하는 만능 명령어 (여전히 많이 사용됨)
 
-* `이동 (Switch)`
+```bash
+# 'feature/login' 브랜치로 이동
+git switch feature/login
+```
 
   ```bash
   # 'feature/login' 브랜치로 이동
   git checkout feature/login
   ```
 
-* `생성 후 이동 (Create & Switch)`
+`-c` (create) 옵션을 사용하여 브랜치를 만들고 즉시 그곳으로 이동
 
-  ```bash
-  # 신규 branch 'feature/signup' 생성 및 이동
-  git checkout -b feature/signup
-  ```
+```bash
+# 'feature/signup' 생성 및 이동
+git switch -c feature/signup
+```
 
-* `파일 복구 (Restore)`
+### 3) 고아 브랜치 생성 (Orphan)
 
-  ```bash
-  # 변경된 파일 복구
-  git checkout -- README.md
-  ```
+`--orphan` 옵션으로 기존 이력과 끊어진 새로운 브랜치 생성 (Git 2.27+)
 
-* `독립적인 브랜치 생성 (Orphan)`
-
-  ```bash
-  # 이력이 없는 'gh-pages' 생성 및 이동
-  git checkout --orphan gh-pages
-  ```
-
-### 2) 권장 방식 (Git 2.23+) : `git switch` & `git restore`
-
-`git checkout`의 기능을 명확히 분리하여 도입된 명령어
-
-* ``git switch`: 브랜치 이동`
-
-  ```bash
-  # 브랜치 이동
-  git switch feature/login
-
-  # 브랜치 생성 및 이동 (-c: create)
-  git switch -c feature/signup
-  
-  # 이력이 없는 독립적인 브랜치 생성 (Orphan)
-  git switch --orphan gh-pages
-  ```
-
-* ``git restore`: 파일 복구`
-
-  ```bash
-  # 파일 변경사항 복구 (HEAD 상태로)
-  git restore README.md
-  
-  # 스테이징된 파일 내리기 (Unstage)
-  git restore --staged README.md
-  ```
-
-### 3) 명령어 비교
-
-| 동작                     | 기존 명령어 (`git checkout`)     | 최신 명령어 (`git switch` / `restore`) |
-| :----------------------- | :------------------------------- | :------------------------------------- |
-| 브랜치 이동              | `git checkout <branch>`          | `git switch <branch>`                  |
-| 브랜치 생성 및 이동      | `git checkout -b <branch>`       | `git switch -c <branch>`               |
-| 독립 브랜치(Orphan) 생성 | `git checkout --orphan <branch>` | `git switch --orphan <branch>`         |
-| 파일 복구                | `git checkout -- <file>`         | `git restore <file>`                   |
+```bash
+# 이력이 없는 'gh-pages' 생성 및 이동
+git switch --orphan gh-pages
+```
 
 ---
 
-## 3. 병합 : `git merge`
+## 3. 복구 : `git restore`
+
+작업 중인 파일의 변경 사항을 되돌리거나 스테이지에서 내리는 전용 명령어 (Git 2.23+)
+
+### 1) 파일 변경 취소 (Discard Changes)
+
+수정했던 파일을 마지막 커밋 상태로 되돌림 (주의: 복구 불가능)
+
+```bash
+# 특정 파일 되돌리기
+git restore README.md
+
+# 현재 경로의 모든 파일 되돌리기
+git restore .
+```
+
+### 2) 스테이징 취소 (Unstage)
+
+`git add`로 스테이지에 올린 파일을 다시 내림 (파일 내용은 유지됨)
+
+```bash
+# 스테이지에서 내리기
+git restore --staged README.md
+```
+
+---
+
+## 4. 구버전 명령어 : `git checkout`
+
+`switch`와 `restore`가 나오기 전까지 사용되던 만능 명령어로, 여전히 많이 사용됨.
+
+* 브랜치 이동: `git checkout [BRANCH]` (= `git switch`)
+* 브랜치 생성 및 이동: `git checkout -b [BRANCH]` (= `git switch -c`)
+* 파일 복구: `git checkout -- [FILE]` (= `git restore`)
+
+---
+
+## 5. 병합 : `git merge`
 
 분리된 작업 공간에서 완료된 내용을 다시 하나로 병합
 
@@ -134,7 +133,7 @@ git branch -D feature/login
 
 ```bash
 # 1. 메인 브랜치로 이동 (받는 쪽)
-git checkout master
+git switch master
 
 # 2. 기능 브랜치 병합 (가져올 쪽)
 git merge feature/login
@@ -142,23 +141,15 @@ git merge feature/login
 
 ### 2) 스쿼시 병합 (Squash Merge)
 
-가져올 브랜치의 모든 커밋 이력을 압축, 현재 브랜치에 새로운 커밋 하나로 추가 -> 개발 과정을 숨기고 결과물만 남길 때 사용
+가져올 브랜치의 모든 커밋 이력을 압축, 현재 브랜치에 새로운 커밋 하나로 추가
 
 ```bash
 # 1. 메인 브랜치로 이동
-git checkout master
+git switch master
 
-# 2. 기능 브랜치를 압축하여 병합 (커밋은 생성되지 않음)
+# 2. 기능 브랜치를 압축하여 병합
 git merge --squash feature/login
 
 # 3. 하나의 커밋으로 저장
 git commit -m "Add login feature (Squashed)"
 ```
-
-### 비교: 커밋 압축 vs 스쿼시 병합
-
-| 구분 | 커밋 압축 (`rebase -i`)                              | 스쿼시 병합 (`merge --squash`)                               |
-| :--- | :--------------------------------------------------- | :----------------------------------------------------------- |
-| 목적 | `내 브랜치 정리`<br>작업 내역을 깔끔하게 다듬기 위함 | `병합 시 정리`<br>다른 브랜치를 가져올 때 하나로 퉁치기 위함 |
-| 결과 | 현재 브랜치의 커밋 개수가 줄어듦                     | 대상 브랜치에 새로운 커밋 1개로 추가됨                       |
-| 시점 | 작업 중간중간, 혹은 PR 올리기 전                     | 작업 완료 후 메인 브랜치에 합칠 때                           |
