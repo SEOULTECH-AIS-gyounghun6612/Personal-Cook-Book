@@ -4,12 +4,54 @@
 
 ## 목차
 
-1. [원격 관리 : git remote](#1-원격-관리--git-remote)
-2. [업로드 : git push](#2-업로드--git-push)
-3. [가져오기 : git fetch](#3-가져오기--git-fetch)
-4. [내려받기 : git pull](#4-내려받기--git-pull)
+1. [복제 : git clone](#1-복제--git-clone)
+2. [원격 관리 : git remote](#2-원격-관리--git-remote)
+3. [업로드 : git push](#3-업로드--git-push)
+4. [가져오기 : git fetch](#4-가져오기--git-fetch)
+5. [내려받기 : git pull](#5-내려받기--git-pull)
 
-## 1. 원격 관리 : `git remote`
+## 1. 복제 : `git clone`
+
+원격 저장소의 전체 내용을 로컬로 복사하여 새로운 저장소를 생성 (가장 일반적인 시작 방법)
+
+### 1) 저장소 복제 (Basic Clone)
+
+원격 저장소의 코드를 로컬 컴퓨터로 내려받음 (자동으로 원격 저장소 별명이 `origin`으로 등록됨)
+
+```bash
+# 원격 저장소 전체 복제
+git clone https://github.com/user/my-project.git
+```
+
+### 2) 브랜치 지정 복제 (Branch Clone)
+
+특정 브랜치만 체크아웃하거나, 해당 브랜치의 이력만 가져와서 복제
+
+* 일반 특정 브랜치 복제 (`-b`): 전체 브랜치 이력을 다 가져오되, 완료 후 해당 브랜치를 자동으로 선택함.
+* 단일 브랜치 전용 복제 (`--single-branch`): 지정한 브랜치의 데이터만 가져와 저장소 용량을 최소화함. (다른 브랜치로 전환 불가)
+
+```bash
+# dev 브랜치만 타겟으로 복제
+git clone -b dev --single-branch https://github.com/user/my-project.git
+
+# [심화] 브랜치 지정 + 서브모듈까지 한 번에 복제
+git clone -b dev --single-branch --recurse-submodules https://github.com/user/my-project.git
+```
+
+### 3) 서브모듈 포함 복제 (Recursive Clone)
+
+저장소 내부에 서브모듈이 포함된 경우, 이를 자동으로 초기화하고 함께 복제
+
+저장소 내부에 서브모듈이 포함된 경우, 이를 자동으로 초기화하고 함께 복제
+
+```bash
+# 모든 서브모듈을 포함하여 한 번에 복제
+git clone --recurse-submodules https://github.com/user/my-project.git
+```
+
+---
+
+## 2. 원격 관리 : `git remote`
 
 로컬 저장소와 원격 저장소 간의 연결을 설정, 확인 및 관리
 
@@ -52,7 +94,7 @@ git remote remove origin
 
 ---
 
-## 2. 업로드 : `git push`
+## 3. 업로드 : `git push`
 
 로컬의 커밋 내역을 원격 저장소로 전송하여 공유하거나, 원격 브랜치를 관리
 
@@ -88,7 +130,7 @@ git push origin --delete feature/login
 
 ---
 
-## 3. 가져오기 : `git fetch`
+## 4. 가져오기 : `git fetch`
 
 원격 저장소의 변경 내역을 확인하거나 삭제된 브랜치 정보를 정리
 
@@ -117,7 +159,7 @@ git fetch -p origin
 
 ---
 
-## 4. 내려받기 : `git pull`
+## 5. 내려받기 : `git pull`
 
 원격 저장소의 최신 변경 사항을 가져와 로컬 작업에 병합
 
